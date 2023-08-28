@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-d offset-md-3">
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to delete the following weather data?</p>
+    <ul>
+        <li><strong>City:</strong> {{ weather_data.city }}</li>
+        <li><strong>Temperature:</strong> {{ weather_data.temperature }}</li>
+        <li><strong>Humidity:</strong> {{ weather_data.humidity }}</li>
+        <li><strong>Wind Speed:</strong> {{ weather_data.wind_speed }}</li>
+        <li><strong>Condition:</strong> {{ weather_data.condition }}</li>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'weather-data-list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

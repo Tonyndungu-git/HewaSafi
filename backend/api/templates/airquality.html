@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+  <h1> Air Quality Information </h1>
+  <br/>
+
+  <!-- Air Quality Form -->
+  <form method="post">
+    {% csrf_token %}
+    {{ air_quality_form.as_p }}
+    <button type="submit">Fetch Air Quality Data</button>
+  </form>
+
+  {% if air_quality_data %}
+    <h2>Air Quality Information</h2>
+    <p>City: {{ air_quality_data.city }}</p>
+    <p>Carbon Monoxide: {{ air_quality_data.carbon_monoxide }}</p>
+    <p>Ozone: {{ air_quality_data.ozone }}</p>
+    <p>Nitrogen Dioxide: {{ air_quality_data.nitrogen_dioxide }}</p>
+    <p>Sulphur Dioxide: {{ air_quality_data.sulphur_dioxide }}</p>
+    <p>PM2.5: {{ air_quality_data.pm2_5 }}</p>
+    <p>PM10: {{ air_quality_data.pm10 }}</p>
+    <p>US EPA Index: {{ air_quality_data.us_epa_index }}</p>
+    <p>GB DEFRA Index: {{ air_quality_data.gb_defra_index }}</p>
+    <p>Timestamp: {{ air_quality_data.timestamp }}</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}

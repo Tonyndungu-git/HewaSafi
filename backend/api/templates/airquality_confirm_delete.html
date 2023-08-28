@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-d offset-md-3">
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to delete the following air quality data?</p>
+    <ul>
+        <li><strong>City:</strong> {{ air_quality.city }}</li>
+        <li><strong>Carbon Monoxide:</strong> {{ air_quality.carbon_monoxide }}</li>
+        <li><strong>Ozone:</strong> {{ air_quality.ozone }}</li>
+        <li><strong>Nitrogen Dioxide:</strong> {{ air_quality.nitrogen_dioxide }}</li>
+        <li><strong>Sulphur Dioxide:</strong> {{ air_quality.sulphur_dioxide }}</li>
+        <li><strong>PM2.5:</strong> {{ air_quality.pm2_5 }}</li>
+        <li><strong>PM10:</strong> {{ air_quality.pm10 }}</li>
+        <li><strong>US EPA Index:</strong> {{ air_quality.us_epa_index }}</li>
+        <li><strong>GB DEFRA Index:</strong> {{ air_quality.gb_defra_index }}</li>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'air-quality-list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

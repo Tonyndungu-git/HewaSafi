@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-d offset-md-3">
+
+{% if user.is_authenticated %}
+    <h1>Welcome {{ user.username }} To HewaSafi</h1>
+    <p> Here at HewaSafi we give detailed information on air quality and weather data.</p>
+    <br>
+    <a href="{% url 'weather-data-list' %}" class="btn btn-primary">Weather Data List</a>
+    <a href="{% url 'air-quality-list' %}" class="btn btn-secondary">Air Quality List</a>
+    <br><br>
+    <h3>Search Weather Data</h3>
+    <form method="POST" action="{% url 'weather-view' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="city" placeholder="Enter city name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Search Weather</button>
+    </form>
+    <br>
+    <h3>Search Air Quality</h3>
+    <form method="POST" action="{% url 'air-quality-view' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="city" placeholder="Enter city name" required>
+        </div>
+        <button type="submit" class="btn btn-secondary">Search Air Quality</button>
+    </form>
+{% else %}
+    <h1>Welcome To HewaSafi</h1>
+    <br>
+    <form method="POST" action="{% url 'homepage' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Username" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+{% endif %}
+</div>
+{% endblock %}

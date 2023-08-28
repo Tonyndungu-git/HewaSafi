@@ -8,7 +8,7 @@ from django.utils import timezone
 class WeatherData(models.Model):
     user = models.ForeignKey(User, default=1, null=True, on_delete=models.SET_NULL)
     city = models.CharField(max_length=100, default='')
-    timestamp = models.DateTimeField(default=timezone.now)
+    timestamp = models.DateTimeField(auto_now_add=True)
     temperature = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     humidity = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     wind_speed = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
@@ -22,7 +22,7 @@ class WeatherData(models.Model):
 class AirQuality(models.Model):
     user = models.ForeignKey(User, default=1, null=True, on_delete=models.SET_NULL)
     city = models.CharField(max_length=100, default='')
-    timestamp = models.DateTimeField(default=timezone.now)
+    timestamp = models.DateTimeField(auto_now_add=True)
     carbon_monoxide = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     ozone = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     nitrogen_dioxide = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)

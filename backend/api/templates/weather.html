@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+  <h1>Weather Information</h1>
+  <br/>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ weather_form.as_p }}
+    <button type="submit">Fetch Weather Data</button>
+  </form>
+
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    {% if form.errors %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Your Form Has Errors
+        {% for field in form %}
+          {% if field.errors %}
+            {{ field.errors }}
+          {% endif %}
+        {% endfor %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+
+    {{ form.city.label_tag }}
+    {{ form.city }}
+    
+    <br/>
+    <button type="submit" class="btn btn-secondary">Get Weather</button>
+  </form>
+
+  {% if weather_data %}
+    <h2>Weather Information</h2>
+    <p>City: {{ weather_data.city }}</p>
+    <p>Temperature: {{ weather_data.temperature }}</p>
+    <p>Humidity: {{ weather_data.humidity }}</p>
+    <p>Wind Speed: {{ weather_data.wind_speed }}</p>
+    <p>Condition: {{ weather_data.condition }}</p>
+    <p>Condition: {{ weather_data.timestamp }}</p>
+  {% endif %}
+</div>
+
+{% endblock %}
