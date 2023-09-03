@@ -4,14 +4,14 @@
 
 <div class="col-md-6 offset-md-3">
   <h1> Air Quality Information </h1>
-  <br/>
-
   <!-- Air Quality Form -->
   <form method="post">
     {% csrf_token %}
     {{ air_quality_form.as_p }}
     <button type="submit">Fetch Air Quality Data</button>
   </form>
+
+</br> 
 
   {% if air_quality_data %}
     <h2>Air Quality Information</h2>
@@ -24,7 +24,7 @@
     <p>PM10: {{ air_quality_data.pm10 }}</p>
     <p>US EPA Index: {{ air_quality_data.us_epa_index }}</p>
     <p>GB DEFRA Index: {{ air_quality_data.gb_defra_index }}</p>
-    <p>Timestamp: {{ air_quality_data.timestamp }}</p>
+    <p>Time: {{ air_quality_data.timestamp }}</p>
   {% endif %}
 
 </div>

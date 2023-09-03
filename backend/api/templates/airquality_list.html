@@ -1,40 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="col-md-d offset-md-3">
-    <h1>Air Quality Data</h1>
-    <br><br>
-    <table class="table">
-        <thead>
-            <tr>
-                <th><input type="checkbox" id="select-all" onclick="selectAllCheckboxes(this)"></th>
-                <th>ID</th>
-                <th>City</th>
-                <th>Carbon Monoxide</th>
-                <th>Ozone</th>
-                <th>Nitrogen Dioxide</th>
-                <th>Sulphur Dioxide</th>
-                <th>Timestamp</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for air_quality in air_quality_list %}
-            <tr>
-                <td><input type="checkbox" name="selected_records" value="{{ data.pk }}"></td>
-                <td>{{ air_quality.id }}</td>
-                <td>{{ air_quality.city }}</td>
-                <td>{{ air_quality.carbon_monoxide }}</td>
-                <td>{{ air_quality.ozone }}</td>
-                <td>{{ air_quality.nitrogen_dioxide }}</td>
-                <td>{{ air_quality.sulphur_dioxide }}</td>
-                <td>{{ air_quality.timestamp }}</td>
-                <td>
-                    <a href="{% url 'air-quality-delete' air_quality.id %}" class="btn btn-danger btn-sm">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-16">    
+            <h1>Air Quality Data</h1>
+
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all" onclick="selectAllCheckboxes(this)"></th>
+                        <th>ID</th>
+                        <th>City</th>
+                        <th>Carbon Monoxide</th>
+                        <th>Ozone</th>
+                        <th>Nitrogen Dioxide</th>
+                        <th>Sulphur Dioxide</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for air_quality in air_quality_list %}
+                        <tr>
+                            <td><input type="checkbox" name="selected_records" value="{{ data.pk }}"></td>
+                            <td>{{ air_quality.id }}</td>
+                            <td>{{ air_quality.city }}</td>
+                            <td>{{ air_quality.carbon_monoxide }}</td>
+                            <td>{{ air_quality.ozone }}</td>
+                            <td>{{ air_quality.nitrogen_dioxide }}</td>
+                            <td>{{ air_quality.sulphur_dioxide }}</td>
+                            <td>{{ air_quality.timestamp }}</td>
+                            <td>
+                                <a href="{% url 'air-quality-delete' air_quality.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
     <button type="submit">Delete Selected</button>
+    </div>
+</div>
 </div>
 {% endblock %}

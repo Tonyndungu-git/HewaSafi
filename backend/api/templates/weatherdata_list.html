@@ -2,39 +2,44 @@
 
 {% block content %}
 <div class="container">
-    <h1>Weather Data List</h1>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th><input type="checkbox" id="select-all" onclick="selectAllCheckboxes(this)"></th>
-                <th>ID</th>
-                <th>City</th>
-                <th>Temperature</th>
-                <th>Humidity</th>
-                <th>Wind Speed</th>
-                <th>Condition</th>
-                <th>Timestamp</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for weather_data in weather_data_list %}
-                <tr>
-                    <td><input type="checkbox" name="selected_records" value="{{ data.pk }}"></td>
-                    <td>{{ weather_data.id }}</td>
-                    <td>{{ weather_data.city }}</td>
-                    <td>{{ weather_data.temperature }}</td>
-                    <td>{{ weather_data.humidity }}</td>
-                    <td>{{ weather_data.wind_speed }}</td>
-                    <td>{{ weather_data.condition }}</td>
-                    <td>{{ weather_data.timestamp }}</td>
-                    <td>
-                        <a href="{% url 'weather-data-delete' weather_data.id %}" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <button type="submit">Delete Selected</button>
-
+    <div class="row justify-content-center">
+        <div class="col-md-16">
+            <h1>Weather Data List</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="select-all" onclick="selectAllCheckboxes(this)"></th>
+                            <th>ID</th>
+                            <th>City</th>
+                            <th>Temperature</th>
+                            <th>Humidity</th>
+                            <th>Wind Speed</th>
+                            <th>Condition</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for weather_data in weather_data_list %}
+                            <tr>
+                                <td><input type="checkbox" name="selected_records" value="{{ data.pk }}"></td>
+                                <td>{{ weather_data.id }}</td>
+                                <td>{{ weather_data.city }}</td>
+                                <td>{{ weather_data.temperature }}</td>
+                                <td>{{ weather_data.humidity }}</td>
+                                <td>{{ weather_data.wind_speed }}</td>
+                                <td>{{ weather_data.condition }}</td>
+                                <td>{{ weather_data.timestamp }}</td>
+                                <td>
+                                    <a href="{% url 'weather-data-delete' weather_data.id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit">Delete Selected</button>
+        </div>
+    </div>
 </div>
 {% endblock %}

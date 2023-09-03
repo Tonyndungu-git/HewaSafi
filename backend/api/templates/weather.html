@@ -31,7 +31,6 @@
     {{ form.city }}
     
     <br/>
-    <button type="submit" class="btn btn-secondary">Get Weather</button>
   </form>
 
   {% if weather_data %}
@@ -41,7 +40,7 @@
     <p>Humidity: {{ weather_data.humidity }}</p>
     <p>Wind Speed: {{ weather_data.wind_speed }}</p>
     <p>Condition: {{ weather_data.condition }}</p>
-    <p>Condition: {{ weather_data.timestamp }}</p>
+    <p>Time: {{ weather_data.timestamp }}</p>
   {% endif %}
 </div>
 

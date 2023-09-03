@@ -1,4 +1,5 @@
 import requests
+import os
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -30,11 +31,6 @@ def homepage(request):
 	else:
 		return render(request, 'homepage.html')
 
-    
-    #return render(request, 'homepage.html', {})
-
-
-
 def logout_page(request):
 	logout(request)
 	messages.success(request, "You Have Been Logged Out...")
@@ -57,29 +53,6 @@ def register_user(request):
 		return render(request, 'register.html', {'form':form})
 
 	return render(request, 'register.html', {'form':form})
-
-
-# def weather_data_view(request):
-#     if request.method == 'POST':
-#         weather_form = WeatherDataForm(request.POST)
-#         if weather_form.is_valid():
-#             city = weather_form.cleaned_data['city']
-#             return redirect('weather-data-api', city=city)  # Redirect to the API view
-#     else:
-#         weather_form = WeatherDataForm()
-    
-#     return render(request, 'weather.html', {'form': weather_form})
-
-# def air_quality_view(request):
-#     if request.method == 'POST':
-#         air_quality_form = AirQualityForm(request.POST)
-#         if air_quality_form.is_valid():
-#             city = air_quality_form.cleaned_data['city']
-#             return redirect('air-quality-api', city=city)  # Redirect to the API view
-#     else:
-#         air_quality_form = AirQualityForm()
-    
-#     return render(request, 'air_quality.html', {'air_quality_form': air_quality_form})
 
 
 def weather_data_view(request):
@@ -168,14 +141,19 @@ def weather_data_list(request):
     if request.method == 'POST':
         selected_records = request.POST.getlist('selected_records')
         WeatherData.objects.filter(pk__in=selected_records).delete()
-    weather_data_list = WeatherData.objects.all()
+    #weather_data_list = WeatherData.objects.all()
+    user = request.user
+    weather_data_list = WeatherData.objects.filter(user=user)
+
     return render(request, 'weatherdata_list.html', {'weather_data_list': weather_data_list})
 
 def air_quality_list(request):
     if request.method == 'POST':
         selected_records = request.POST.getlist('selected_records')
         AirQuality.objects.filter(pk__in=selected_records).delete()
-    air_quality_list = AirQuality.objects.all()
+    #air_quality_list = AirQuality.objects.all()
+    user = request.user
+    air_quality_list = AirQuality.objects.filter(user=user)
     return render(request, 'airquality_list.html', {'air_quality_list': air_quality_list})
 
 
@@ -196,3 +174,14 @@ def air_quality_delete(request, pk):
         return redirect('air-quality-list')  # Redirect to the list view after successful deletion
     
     return render(request, 'airquality_confirm_delete.html', {'air_quality': air_quality})
+def delete_selected_weather_data(request):
+    if request.method == 'POST':
+        selected_records = request.POST.getlist('selected_records')
+        WeatherData.objects.filter(pk__in=selected_records, user=request.user).delete()
+    return redirect('weather_data_list')
+
+def delete_selected_air_quality(request):
+    if request.method == 'POST':
+        selected_records = request.POST.getlist('selected_records')
+        AirQuality.objects.filter(pk__in=selected_records, user=request.user).delete()
+    return redirect('air_quality_list')

@@ -7,9 +7,6 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li>
 
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
@@ -19,6 +16,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'air-quality-view' %}">Air Quality</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
