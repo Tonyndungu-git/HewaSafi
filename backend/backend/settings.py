@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from decouple import config
+#from decouple import config
 from pathlib import Path
 import os
 
@@ -83,23 +83,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hewasafi_db',
-        'USER': 'tony_hewasafi',
-        'PASSWORD': '2541muriithi',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'hewasafi_db',
+#         'USER': 'tony_hewasafi',
+#         'PASSWORD': '2541muriithi',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
@@ -165,4 +165,4 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",   # Another allowed origin
 ]
 
-api_key = config('API_KEY')
+#api_key = config('API_KEY')
