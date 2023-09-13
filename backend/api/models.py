@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 
-# Create your models here.
+# WEATHER DATA MODEL
 class WeatherData(models.Model):
     user = models.ForeignKey(User, default=1, null=True, on_delete=models.SET_NULL)
     city = models.CharField(max_length=100, default='')
@@ -13,12 +13,11 @@ class WeatherData(models.Model):
     humidity = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     wind_speed = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     condition = models.CharField(max_length=100)
-    # Add other fields as needed
 
     def __str__(self):
         return f"Weather data for {self.city} at {self.timestamp}"
 
-
+# AIR QUALITY MODEL
 class AirQuality(models.Model):
     user = models.ForeignKey(User, default=1, null=True, on_delete=models.SET_NULL)
     city = models.CharField(max_length=100, default='')
