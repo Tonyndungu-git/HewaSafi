@@ -1,6 +1,5 @@
 # HewaSafi - Air Quality and Weather Data Web Application
 
-
 HewaSafi is a web application designed to provide users with real-time air quality and weather data for cities worldwide. Whether you're planning a trip, concerned about outdoor activities, or simply want to stay informed about your local environment, HewaSafi has you covered.
 
 ## Table of Contents
@@ -39,3 +38,23 @@ Air quality and weather data are critical for making informed decisions in our d
 
 - **Favorites:** Save your favorite cities for quick access to their data.
 
+- **Search History:** Keep track of your previous searches for easy reference.
+
+- **User Settings:** Personalize your experience by choosing your preferred units for temperature and wind speed.
+
+## Getting Started
+
+### Prerequisites
+
+Before running the application, make sure you have the following installed:
+
+- Python
+- Django
+- Node.js
+- npm
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your_username/your_project.git
