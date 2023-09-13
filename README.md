@@ -15,6 +15,9 @@ HewaSafi is a web application designed to provide users with real-time air quali
 - [License](#license)
 
 ## About the Project
+![Screenshot](screenshots/s1.png)
+![Screenshot](screenshots/s2.png)
+
 
 Air quality and weather data are critical for making informed decisions in our daily lives. HewaSafi aims to make this information easily accessible and understandable. Here's what you can expect from this project:
 
